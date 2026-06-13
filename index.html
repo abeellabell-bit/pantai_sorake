@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destinasi Pantai Sorake Beach</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: url('sorake.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00a8ff;
+}
+
+.toggle {
+    background: #00a8ff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* HERO SECTION (HALAMAN UTAMA) */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
+    padding: 90px 20px 100px 20px;
+    transition: 0.5s ease-in-out;
+}
+
+.hero span {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #dcdde1;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1.2;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 15px;
+    font-weight: 300;
+    color: #f5f6fa;
+    margin-bottom: 35px;
+}
+
+/* MENU BOX WRAPPER */
+.menu-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 20px;
+}
+
+.menu-box {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: #2f3640;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: 0.3s transform, 0.3s box-shadow;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-box h3 {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.menu-box p {
+    font-size: 12px;
+    color: #718093;
+    margin: 0;
+}
+
+.menu-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 168, 255, 0.4);
+}
+
+/* SUB-PAGE (HALAMAN KONTEN INTERAL) */
+.sub-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    text-align: center;
+    padding: 90px 25px 80px 25px; 
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.1);
+    transition: all 0.4s ease-in-out;
+}
+
+.sub-page.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+/* TOMBOL KEMBALI UNIVERSAL */
+.btn-back {
+    background: transparent;
+    border: 2px solid #00a8ff;
+    color: #00a8ff;
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+.btn-back:hover {
+    background: #00a8ff;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* KUSTOMISASI UNTUK GRID GALERI */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 10px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 168, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* TEKS BERJALAN */
+.marquee {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #00a8ff;
+    color: white;
+    padding: 8px;
+    z-index: 80;
+    font-size: 13px;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: jalan 15s linear infinite;
+}
+
+@keyframes jalan {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Pantai Sorake</div>
+    <button class="toggle">●</button>
+</nav>
+
+<section class="hero" id="main-hero">
+    <span>The Paradise for Surfers</span>
+    <h1>Pantai Sorake</h1>
+    <p>Pesona Biru Samudra, Kehangatan Budaya Nias</p>
+
+    <div class="menu-container">
+        <a href="#" class="menu-box" onclick="openPage('tentang')">
+            <h3 style="color: #00a8ff;">📖 Tentang</h3>
+            <p>Pantai Sorake</p>
+        </a>
+
+        <a href="#" class="menu-box" onclick="openPage('keunggulan')">
+            <h3 style="color: #00a8ff;">⭐ Keunggulan</h3>
+            <p>Daya tarik utama</p>
+        </a>
+
+        <a href="#" class="menu-box" onclick="openPage('lokasi')">
+            <h3 style="color: #00a8ff;">📍 Lokasi</h3>
+            <p>Petunjuk & alamat</p>
+        </a>
+
+        <a href="#" class="menu-box" onclick="openPage('galeri')">
+            <h3 style="color: #00a8ff;">📸 Galeri</h3>
+            <p>Foto keindahan pantai</p>
+        </a>
+          
+    </div>
+</section>
+
+<div class="sub-page" id="page-tentang" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('sorake.jpg') no-repeat center center fixed; background-size: cover;">
+    <h2 style="font-size: 32px; color: #00a8ff; margin-bottom: 20px;">TENTANG</h2>
+    <div class="content-text" style="text-align: justify;">
+        <p style="margin-bottom: 15px;">
+            Pantai Sorake yang terletak di Kecamatan Teluk Dalam, Nias Selatan, merupakan destinasi selancar kelas dunia yang diakui sebagai salah satu spot surfing terbaik kedua di dunia setelah Hawaii. Pantai ini sangat terkenal di kalangan peselancar internasional karena memiliki karakteristik ombak yang sangat konsisten dengan ketinggian ekstrem berkisar antara 10 hingga 15 meter. Keunikan utama dari ombak di sini adalah gulungannya yang utuh dan bisa berputar hingga 11 kali sebelum akhirnya pecah di tepi pantai. Waktu terbaik untuk berkunjung dan menyaksikan aksi para peselancar profesional menaklukkan gelombang ini adalah pada puncak musim selancar yang berlangsung antara bulan April dan September.
+        </p>
+        <p style="margin-bottom: 20px;">
+            Karena reputasi ombaknya yang luar biasa, kawasan yang berdampingan langsung dengan Pantai Lagundri ini rutin ditunjuk sebagai tuan rumah berbagai kompetisi selancar bergengsi internasional, seperti Nias Open. Selain menawarkan panorama laut yang memukau bagi pencinta olahraga ekstrem, Pantai Sorake juga ramah bagi para wisatawan umum yang ingin bersantai. Di sepanjang bibir pantai, sudah tersedia fasilitas penunjang yang memadai, termasuk deretan homestay dengan tarif terjangkau milik warga lokal yang menyuguhkan pemandangan langsung ke laut lepas. Akses menuju lokasi pun terbilang mudah karena jaraknya yang sangat dekat dari pusat kota Teluk Dalam.
+        </p>
+    </div>
+    <button class="btn-back" onclick="closePage('tentang')">← Kembali</button>
+</div>
+
+<div class="sub-page" id="page-keunggulan" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('sorake.jpg') no-repeat center center fixed; background-size: cover;">
+    <h2 style="font-size: 32px; color: #00a8ff; margin-bottom: 20px;">KEUNGGULAN</h2>
+    <div class="content-text" style="text-align: justify;">
+        <p style="margin-bottom: 15px;">
+            Keunggulan utama pantai ini terletak pada reputasi internasionalnya yang sering menjadi tuan rumah kejuaraan selancar bergengsi seperti Nias Pro, sehingga menarik minat ribuan peselancar mancanegara setiap tahunnya.
+        </p>
+        <p style="margin-bottom: 20px;">
+            Selain menjadi motor penggerak ekonomi daerah, Pantai Sorake juga memiliki nilai tambah karena lokasinya yang dekat dengan situs budaya tradisi Lompat Batu Fahombo.
+        </p>
+        <p style="margin-bottom: 20px;">
+            Di luar reputasinya sebagai surga peselancar, pantai ini menyuguhkan panorama alam tropis yang sangat eksotis dengan air laut biru jernih dan hamparan karang yang indah. Suasana di sekitar kawasan pantai ini relatif tenang dan alami, memberikan pengalaman berlibur yang santai bagi wisatawan non-peselancar yang ingin menikmati matahari terbit atau sekadar bersantai di pinggir laut. Fasilitas pendukung di sekitar lokasi juga sudah memadai, mulai dari penginapan bergaya tradisional (homestay) langsung di tepi pantai hingga persewaan papan selancar dan instruktur lokal yang ramah.
+        </p>
+    </div>
+    <button class="btn-back" onclick="closePage('keunggulan')">← Kembali</button>
+</div>
+
+<div class="sub-page" id="page-lokasi" style="background: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.95)), url('sorake.jpg') no-repeat center center fixed; background-size: cover;">
+    <h2 style="font-size: 28px; color: #00a8ff; letter-spacing: 3px; margin-bottom: 5px;">LOKASI WISATA</h2>
+    <p style="font-size: 13px; color: #dcdde1; margin-bottom: 25px; font-weight: 300;">Temukan rute menuju Pantai Sorake dan informasi lengkap kunjungan Anda.</p>
+
+    <div class="content-text" style="max-width: 500px; width: 100%; display: flex; flex-direction: column; gap: 20px; text-align: left;">
+        <div style="background: rgba(30, 30, 30, 0.75); border-radius: 15px; padding: 20px; border: 1px solid rgba(0, 168, 255, 0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <h3 style="color: #00a8ff; font-size: 16px; margin-bottom: 10px; font-weight: 600;">📍 Alamat Pantai</h3>
+            <p style="font-size: 14px; line-height: 1.6; color: #f5f6fa; font-weight: 300;">
+                Kawasan Wisata Pantai Sorake, Desa Botohilitano, Kecamatan Teluk Dalam, Kabupaten Nias Selatan, Sumatera Utara, 22861.
+            </p>
+        </div>
+
+        <div style="background: rgba(30, 30, 30, 0.75); border-radius: 15px; padding: 20px; border: 1px solid rgba(0, 168, 255, 0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; gap: 12px;">
+            <h3 style="color: #00a8ff; font-size: 16px; font-weight: 600;">🗺️ Peta Lokasi</h3>
+            <div style="width: 100%; height: 230px; border-radius: 12px; overflow: hidden; border: 2px solid rgba(0, 168, 255, 0.3); background: #2f3542; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; padding: 20px;">
+                <div style="position: absolute; width: 100%; height: 60px; background: rgba(0, 168, 255, 0.15); bottom: 0; left: 0;"></div>
+                <div style="position: absolute; width: 8px; height: 100%; background: rgba(255, 255, 255, 0.08); left: 40%; top: 0;"></div>
+                <div style="position: absolute; width: 100%; height: 8px; background: rgba(255, 255, 255, 0.08); top: 50%; left: 0;"></div>
+                <div style="font-size: 36px; z-index: 2; margin-bottom: 5px; animation: bounce 2s infinite alternate;">📍</div>
+                <h4 style="color: #ffffff; font-size: 14px; font-weight: 600; z-index: 2;">Pantai Sorake, Nias Selatan</h4>
+                <div style="position: absolute; top: 15px; left: 15px; background: #ffffff; color: #00a8ff; padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">Peta Aktif</div>
+            </div>
+        </div>
+
+        <div style="background: rgba(30, 30, 30, 0.75); border-radius: 15px; padding: 20px; border: 1px solid rgba(0, 168, 255, 0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            <h3 style="color: #00a8ff; font-size: 16px; margin-bottom: 12px; font-weight: 600;">🕒 Informasi Kunjungan</h3>
+            <div style="font-size: 14px; display: flex; flex-direction: column; gap: 8px; color: #f5f6fa; font-weight: 300;">
+                <p>☀️ <b>Waktu Operasional :</b> Terbuka 24 Jam (Terbaik Pagi/Sore)</p>
+                <p>🚗 <b>Akses Jalan :</b> ± 2-3 Jam berkendara dari Bandara Binaka Gunungsitoli.</p>
+            </div>
+        </div>
+    </div>
+    <button class="btn-back" onclick="closePage('lokasi')">← Kembali ke Beranda</button>
+</div>
+
+<div class="sub-page" id="page-galeri" style="background: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.95)), url('sorake.jpg') no-repeat center center fixed; background-size: cover;">
+    <h2 style="font-size: 28px; color: #00a8ff; letter-spacing: 3px; margin-bottom: 5px;">GALERI WISATA</h2>
+    <p style="font-size: 13px; color: #dcdde1; margin-bottom: 25px; font-weight: 300;">Dokumentasi pesona keindahan di sekitar Pantai Sorake.</p>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="pohon.jpg" alt="Pantai Sorake 1">
+        </div>
+        <div class="gallery-item">
+            <img src="surfing.jpg" alt="Pantai Sorake 2">
+        </div>
+        <div class="gallery-item">
+            <img src="pantai1.jpg" alt="Pantai Sorake 3">
+        </div>
+        <div class="gallery-item">
+            <img src="pantai2.jpg" alt="Pantai Sorake 4">
+        </div>
+    </div>
+
+    <button class="btn-back" onclick="closePage('galeri')">← Kembali ke Beranda</button>
+</div>
+
+<script>
+function openPage(pageId) {
+    document.getElementById('page-' + pageId).classList.add('active');
+    document.getElementById('main-hero').style.opacity = "0";
+}
+
+function closePage(pageId) {
+    document.getElementById('page-' + pageId).classList.remove('active');
+    document.getElementById('main-hero').style.opacity = "1";
+    document.getElementById('page-' + pageId).scrollTop = 0;
+}
+</script>
+
+</body>
+</html>
